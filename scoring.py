@@ -12,6 +12,7 @@ and neither function has been checked against bad input.
 
 from scoring_helpers import apply_streak_bonus
 
+# import scoring_helpers #Should not work
 
 def session_rating(combined_score: int) -> str:
     """Rate a study session from its combined minutes+focus score. Correct and tested."""
@@ -44,15 +45,20 @@ def render_session_scorer_tab():
 
 
 def run_demo():
-    sessions = [55, 68, 82, 91, 77]
-    sessions.append(-28) #Raw: -28 -> Boosted: -22 -> Rating: Skip
-    sessions.append(87.5) #Raw: 87.5 -> Boosted: 93.5 -> Rating: Great
-    sessions.append(129) #Raw: 129 -> Boosted: 100 -> Rating: Great
+    sessions = [True, False, 55, 68, 82, 91, 77]
+    # sessions.append(-28) #Raw: -28 -> Boosted: -22 -> Rating: Skip
+    # sessions.append(87.5) #Raw: 87.5 -> Boosted: 93.5 -> Rating: Great
+    # sessions.append(129) #Raw: 129 -> Boosted: 100 -> Rating: Great
     streak = 3
     for raw in sessions:
         boosted = apply_streak_bonus(raw, streak)
         rating = session_rating(boosted)
         print(f"Raw: {raw} -> Boosted: {boosted} -> Rating: {rating}")
+
+    # print(session_rating(-28))
+    # print(session_rating(87.5))
+    # print(session_rating(129))
+    # print(session_rating(False))
 
 
 if __name__ == "__main__":
